@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/play.css" />
+    <link rel="shortcut icon" href="/images/brain.svg" type="image/x-icon" />
+    <title>Projeto MasterMind</title>
+  </head>
+  <body>
+    <div id="audio">
+      <audio id="bg-music" src="/tracks/trilha1.mp3" autoplay loop></audio>
+      <img
+        id="control-icon"
+        src="/images/pause.svg"
+        alt="Botão de Pausa"
+        width="30px"
+      />
+    </div>
+    <a href="/index.html">
+      <img
+        id="voltar"
+        src="/images/left-arrow.svg"
+        alt="Botão de Pausa"
+        width="30px"
+      />
+    </a>
+    <div class="main-regras">
+      <h2>Regras do Jogo</h2>
+      <ol>
+        <li>
+          O jogo utiliza seis cores diferentes: vermelho, amarelo, azul, rosa,
+          preto e branco
+        </li>
+        <li>
+          Um jogador cria uma sequência secreta de cores que o outro jogador
+          deve adivinhar
+        </li>
+        <li>
+          Os jogadores têm até 10 tentativas para descobrir a sequência correta
+        </li>
+        <li>
+          Após cada tentativa, são fornecidas dicas através de:
+          <ul>
+            <li>Bola preta: indica uma cor correta na posição correta</li>
+            <li>Bola branca: indica uma cor correta na posição errada</li>
+          </ul>
+        </li>
+        <li>
+          Use as dicas das tentativas anteriores para fazer deduções lógicas
+          sobre:
+          <ul>
+            <li>Quais cores estão na sequência</li>
+            <li>Onde cada cor deve ser colocada</li>
+          </ul>
+        </li>
+        <li>
+          O jogo continua até que:
+          <ul>
+            <li>O jogador adivinhe corretamente a sequência</li>
+            <li>Todas as 10 tentativas sejam usadas</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

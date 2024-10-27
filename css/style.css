@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "MasterMind";
+  src: url(/fonts/pricedown\ bl.otf) format("opentype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  user-select: none;
+}
+html,
+body {
+  height: 100%; /* Garante que o HTML e o body ocupem 100% da altura da página */
+  display: flex;
+  flex-direction: column;
+  background-color: #0d0d0d;
+  color: #f1f1f1;
+  z-index: -1;
+}
+body {
+  background: repeating-linear-gradient(
+    rgba(0, 0, 0, 0.322), /* Linhas mais escuras */ 
+    rgba(0, 0, 0, 0.205) 6px, /* Espessura da linha: 6px */ 
+    transparent 6px,
+    transparent 12px
+    /* Espaçamento total: 12px (6px de linha + 6px de espaço) */
+  );
+}
+main {
+  flex: 1; /* Faz com que o 'main' ocupe o espaço disponível, empurrando o footer para baixo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+h1 {
+  font-family: "MasterMind";
+  font-size: 120px;
+  color: #f1f1f1;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 0));
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#brain {
+  position: fixed;
+  z-index: -1; /* Coloca a imagem atrás dos outros elementos */
+  width: 50%;
+  max-width: 500px; /* Garante que a imagem não fique muito grande em telas grandes */
+  min-width: 350px;
+  filter: drop-shadow(1px 1px 20px rgb(0, 0, 0));
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: inherit; /* Opcional: mantém a cor do texto */
+}
+
+button {
+  width: 300px;
+  margin-top: 5%;
+  padding: 15px 60px;
+  font-size: 30px;
+  font-family: "Silkscreen", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  background-color: #f1f1f1;
+  color: #000;
+  transition: 0.25s;
+  border: 3px solid #0d0d0d;
+  filter: drop-shadow(1px 1px 3px rgb(0, 0, 0));
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #000000;
+  color: #f1f1f1;
+  border: 3px solid #f1f1f1;
+  border-radius: 0;
+  transform: translate(-5px, -5px);
+}
+
+#control-icon {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1;
+  width: 30px;
+  cursor: pointer;
+}
+
+#botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Define um espaço de 10px entre os botões */
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #070707;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #f1f1f1;
+}

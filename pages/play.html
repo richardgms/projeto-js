@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/play.css" />
+    <link rel="shortcut icon" href="/images/brain.svg" type="image/x-icon" />
+    <title>Projeto MasterMind</title>
+  </head>
+  <body>
+    <div id="audio">
+      <audio id="bg-music" src="/tracks/trilha1.mp3" autoplay loop></audio>
+      <img
+        id="control-icon"
+        src="/images/pause.svg"
+        alt="Botão de Pausa"
+        width="30px"
+      />
+    </div>
+    <div id="mastermind">
+        <div id="title">
+          <h1>MASTERMIND</h1>
+        </div>
+        <div id="cores">
+          <div class="color" id="vermelho"></div>
+          <div class="color" id="amarelo"></div>
+          <div class="color" id="laranja"></div>
+          <div class="color" id="azul"></div>
+          <div class="color" id="rosa"></div>
+          <div class="color" id="roxo"></div>
+          <div class="color" id="verde"></div>
+        </div>
+        <div id="board">
+          <div class="tentativa" id="tentativa1">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole holeT1" id="hole1"></div>
+            <div class="hole holeT1" id="hole2"></div>
+            <div class="hole holeT1" id="hole3"></div>
+            <div class="hole holeT1" id="hole4"></div>
+          </div>
+          <div class="tentativa" id="tentativa2">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole5"></div>
+            <div class="hole" id="hole6"></div>
+            <div class="hole" id="hole7"></div>
+            <div class="hole" id="hole8"></div>
+          </div>
+          <div class="tentativa" id="tentativa3">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole9"></div>
+            <div class="hole" id="hole10"></div>
+            <div class="hole" id="hole11"></div>
+            <div class="hole" id="hole12"></div>
+          </div>
+          <div class="tentativa" id="tentativa4">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole13"></div>
+            <div class="hole" id="hole14"></div>
+            <div class="hole" id="hole15"></div>
+            <div class="hole" id="hole16"></div>
+          </div>
+          <div class="tentativa" id="tentativa5">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole17"></div>
+            <div class="hole" id="hole18"></div>
+            <div class="hole" id="hole19"></div>
+            <div class="hole" id="hole20"></div>
+          </div>
+          <div class="tentativa" id="tentativa6">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole21"></div>
+            <div class="hole" id="hole22"></div>
+            <div class="hole" id="hole23"></div>
+            <div class="hole" id="hole24"></div>
+          </div>
+          <div class="tentativa" id="tentativa7">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole25"></div>
+            <div class="hole" id="hole26"></div>
+            <div class="hole" id="hole27"></div>
+            <div class="hole" id="hole28"></div>
+          </div>
+          <div class="tentativa" id="tentativa8">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole29"></div>
+            <div class="hole" id="hole30"></div>
+            <div class="hole" id="hole31"></div>
+            <div class="hole" id="hole32"></div>
+          </div>
+          <div class="tentativa" id="tentativa9">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole33"></div>
+            <div class="hole" id="hole34"></div>
+            <div class="hole" id="hole35"></div>
+            <div class="hole" id="hole36"></div>
+          </div>
+          <div class="tentativa" id="tentativa10">
+            <div class="four-hole">
+              <div class="four-hole-left"></div>
+              <div class="four-hole-left"></div>
+              <div class="four-hole-right"></div>
+              <div class="four-hole-right"></div>
+            </div>
+            <div class="hole" id="hole37"></div>
+            <div class="hole" id="hole38"></div>
+            <div class="hole" id="hole39"></div>
+            <div class="hole" id="hole40"></div>
+          </div>
+        </div>
+        <button id="botaoConcluir">Concluir Jogada</button>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
