@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const jogarButton = document.getElementById("jogar");
     const regrasButton = document.getElementById("regras");
   
-    bgMusic.volume = 0.3;
+    bgMusic.volume = 0;
     bgMusic
       .play()
       .then(() => {
