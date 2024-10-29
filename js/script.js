@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   const bgMusic = document.querySelector("#bg-music");
   const controlIcon = document.querySelector("#control-icon");
-  const jogarButton = document.getElementById("jogar");
-  const regrasButton = document.getElementById("regras");
+  const jogarButton = document.querySelector(".jogar");
+  const regrasButton = document.querySelector(".regras");
+  const voltarButton = document.querySelector("#voltar");
+
+  
 
   // Configuração do áudio e controles
-  bgMusic.volume = 0;
+  bgMusic.volume = 0.3;
   bgMusic.play().then(() => {
     controlIcon.src = "/images/pause.svg";
   }).catch(() => {
@@ -17,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }, { once: true });
   });
-
-  const clickSound = new Audio("./tracks/click.mp3");
 
   // Função de alternância entre play/pause para a música de fundo
   function togglePlay() {
@@ -34,17 +35,50 @@ document.addEventListener("DOMContentLoaded", function () {
   // Controla a música quando o ícone é clicado
   controlIcon.addEventListener("click", togglePlay);
 
-  // Sons para os botões "Jogar" e "Regras"
-  jogarButton && jogarButton.addEventListener("click", () => {
-    clickSound.play();
+  // Sons para os botões "Jogar", "Regras", "Voltar" e "Play/Pause".
+
+  const clickSound = new Audio("../tracks/click.mp3");
+  clickSound.load();
+  clickSound.volume = 0.5;
+
+  controlIcon && controlIcon.addEventListener("click", () => {
+      clickSound.pause();
+      clickSound.currentTime = 0;
+      clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
+    });
+
+  voltarButton && voltarButton.addEventListener("click", (event) => {
+    event.preventDefault();
+      setTimeout(() => {
+        window.location.href = "../index.html";
+      }, 300);
+      clickSound.pause();
+      clickSound.currentTime = 0;
+      clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
+    });
+
+  jogarButton && jogarButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    setTimeout(() => {
+      window.location.href = "../pages/play.html";
+    }, 300);
+    clickSound.pause();
     clickSound.currentTime = 0;
+    clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
   });
 
-  regrasButton && regrasButton.addEventListener("click", () => {
-    clickSound.play();
+  regrasButton && regrasButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    setTimeout(() => {
+      window.location.href = "../pages/regras.html";
+    }, 300);
+    clickSound.pause();
     clickSound.currentTime = 0;
+    clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
   });
 });
+
+
 
 // Configuração inicial das variáveis de cor e tentativas
 let collors = document.querySelectorAll(".color"); 
