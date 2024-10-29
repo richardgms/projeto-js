@@ -276,3 +276,15 @@ button:hover {
   border: 3px solid #f1f1f1;
   border-radius: 0;
 }
+
+#jogadasRestantes {
+  display: inline-block;
+  font-family: "Press Start 2P", system-ui;
+  min-width: 50px;
+  font-weight: 400;
+  border: 3px solid white;
+  padding: 20px 10px;
+  position: fixed;
+  top: 30px;
+  left: 30px;
+}
