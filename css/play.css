@@ -182,6 +182,7 @@ h1 {
 
 .four-hole-left{
   display: flex;
+  box-sizing: content-box;
   width: 15px;
   height: 15px;
   margin: 5px 5px;
@@ -191,6 +192,7 @@ h1 {
 
 .four-hole-right{
   display: flex;
+  box-sizing: content-box;
   width: 15px;
   height: 15px;
   margin: 5px 5px;

@@ -75,7 +75,9 @@ let botaoConcluir = document.getElementById("botaoConcluir");
 function randomColor(array, numeroDeCores) {
   return array.sort(() => Math.random() - 0.5).slice(0, numeroDeCores);
 }
+
 const coresEscolhidas = randomColor(Object.keys(collorsArrayRandom), 4); // Pegando chaves do objeto como array e embaralhando
+
 console.log("Cores escolhidas:", coresEscolhidas); // Exibe as cores escolhidas
 
 // Seleção de cores
@@ -114,32 +116,86 @@ const todosPreenchidos = estadoHoles.every(estado => estado === true);
 botaoConcluir.style.display = todosPreenchidos ? "block" : "none";
 }
 
-// Adiciona um listener no botão de conclusão
-botaoConcluir.addEventListener("click", function () {
+
+
+
+// // Adiciona um listener no botão de conclusão
+// botaoConcluir.addEventListener("click", function () {
   
+//   console.log("Cores escolhidas:", coresEscolhidas);
+
+//   // Validação da ordem das cores.
+//   let objectColorHoles = {
+//     "corHole1": window.getComputedStyle(holesT1[0]).backgroundColor,
+//     "corHole2": window.getComputedStyle(holesT1[1]).backgroundColor,
+//     "corHole3": window.getComputedStyle(holesT1[2]).backgroundColor,
+//     "corHole4": window.getComputedStyle(holesT1[3]).backgroundColor,
+//   };
+
+//   console.log("Cores nos holes:", corHole1, corHole2, corHole3, corHole4);
+//   console.log("Cores aleatórias RGB:", 
+//             collorsArrayRandom[coresEscolhidas[0]], 
+//             collorsArrayRandom[coresEscolhidas[1]], 
+//             collorsArrayRandom[coresEscolhidas[2]], 
+//             collorsArrayRandom[coresEscolhidas[3]]);
+
+//   if (objectColorHoles[corHole1[0]] === collorsArrayRandom[coresEscolhidas[0]] &&
+//     objectColorHoles[corHole1[1]] === collorsArrayRandom[coresEscolhidas[1]] &&
+//     objectColorHoles[corHole1[2]] === collorsArrayRandom[coresEscolhidas[2]] &&
+//     objectColorHoles[corHole1[3]] === collorsArrayRandom[coresEscolhidas[3]]) {
+//         console.log("Parabéns, você acertou!");
+//       }
+// });
+
+
+botaoConcluir.addEventListener("click", function () {
   console.log("Cores escolhidas:", coresEscolhidas);
 
-  // Validação da ordem das cores.
-  let corHole1 = window.getComputedStyle(holesT1[0]).backgroundColor;
-  let corHole2 = window.getComputedStyle(holesT1[1]).backgroundColor;
-  let corHole3 = window.getComputedStyle(holesT1[2]).backgroundColor;
-  let corHole4 = window.getComputedStyle(holesT1[3]).backgroundColor;
-  console.log("Cores nos holes:", corHole1, corHole2, corHole3, corHole4);
-  console.log("Cores aleatórias RGB:", 
-            collorsArrayRandom[coresEscolhidas[0]], 
-            collorsArrayRandom[coresEscolhidas[1]], 
-            collorsArrayRandom[coresEscolhidas[2]], 
-            collorsArrayRandom[coresEscolhidas[3]]);
+  // Converte holesT1 para um array para usar o método map
+  let coresHoles = Array.from(holesT1).map(hole => window.getComputedStyle(hole).backgroundColor);
+  
+  let acertosExatos = 0;
+  let acertosCorPosicaoDiferente = 0;
+  let posicoesCorretas = [];
+  let posicoesIncorretas = [];
 
-  if (corHole1 === collorsArrayRandom[coresEscolhidas[0]] &&
-      corHole2 === collorsArrayRandom[coresEscolhidas[1]] &&
-      corHole3 === collorsArrayRandom[coresEscolhidas[2]] &&
-      corHole4 === collorsArrayRandom[coresEscolhidas[3]]) {
-        console.log("Parabéns, você acertou!");
-      } else {
-        console.log("Você errou, tente novamente.");
-      }
+  let fourHolesT1 = document.querySelectorAll(".four-holeT1");
+
+  
+
+  // Verificar se cada cor no hole corresponde exatamente à posição esperada
+  for (let i = 0; i < coresEscolhidas.length; i++) {
+    const corEscolhida = coresEscolhidas[i];
+    const valorRGBEsperado = collorsArrayRandom[corEscolhida];
+    const valorRGBHole = coresHoles[i];
+
+    if (valorRGBEsperado === valorRGBHole) {
+      acertosExatos++;
+      posicoesCorretas.push(i);
+      fourHolesT1[i].style.backgroundColor = "black";
+      fourHolesT1[i].style.outline = "2px solid white";
+      console.log(`Correspondência exata na posição ${i}`);
+    } else if (coresHoles.includes(valorRGBEsperado)) {
+      acertosCorPosicaoDiferente++;
+      const posicaoDiferente = coresHoles.indexOf(valorRGBEsperado);
+      posicoesIncorretas.push(posicaoDiferente);
+      fourHolesT1[i].style.backgroundColor = "white";
+      fourHolesT1[i].style.outline = "2px solid #999999";
+      console.log(`A cor ${corEscolhida} foi encontrada, mas em posição diferente: ${posicaoDiferente}`);
+    } else {
+      fourHolesT1[i].style.backgroundColor = "#2e2e2e";
+      fourHolesT1[i].style.outline = "none";
+      console.log(`Não foi encontrada a cor ${corEscolhida} em nenhum holeT1`);
+    }
+  }
+
+  if (acertosExatos === 4) {
+    console.log("Parabéns, você acertou a sequência exata!");
+  } else {
+    console.log(`${acertosExatos} cor(es) na posição correta (Índices: ${posicoesCorretas.join(", ")}), ${acertosCorPosicaoDiferente} cor(es) na posição diferente (Índices: ${posicoesIncorretas.join(", ")}).`);
+  }
 });
+
 
 
 
