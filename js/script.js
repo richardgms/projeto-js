@@ -116,38 +116,6 @@ const todosPreenchidos = estadoHoles.every(estado => estado === true);
 botaoConcluir.style.display = todosPreenchidos ? "block" : "none";
 }
 
-
-
-
-// // Adiciona um listener no botão de conclusão
-// botaoConcluir.addEventListener("click", function () {
-  
-//   console.log("Cores escolhidas:", coresEscolhidas);
-
-//   // Validação da ordem das cores.
-//   let objectColorHoles = {
-//     "corHole1": window.getComputedStyle(holesT1[0]).backgroundColor,
-//     "corHole2": window.getComputedStyle(holesT1[1]).backgroundColor,
-//     "corHole3": window.getComputedStyle(holesT1[2]).backgroundColor,
-//     "corHole4": window.getComputedStyle(holesT1[3]).backgroundColor,
-//   };
-
-//   console.log("Cores nos holes:", corHole1, corHole2, corHole3, corHole4);
-//   console.log("Cores aleatórias RGB:", 
-//             collorsArrayRandom[coresEscolhidas[0]], 
-//             collorsArrayRandom[coresEscolhidas[1]], 
-//             collorsArrayRandom[coresEscolhidas[2]], 
-//             collorsArrayRandom[coresEscolhidas[3]]);
-
-//   if (objectColorHoles[corHole1[0]] === collorsArrayRandom[coresEscolhidas[0]] &&
-//     objectColorHoles[corHole1[1]] === collorsArrayRandom[coresEscolhidas[1]] &&
-//     objectColorHoles[corHole1[2]] === collorsArrayRandom[coresEscolhidas[2]] &&
-//     objectColorHoles[corHole1[3]] === collorsArrayRandom[coresEscolhidas[3]]) {
-//         console.log("Parabéns, você acertou!");
-//       }
-// });
-
-
 botaoConcluir.addEventListener("click", function () {
   console.log("Cores escolhidas:", coresEscolhidas);
 
@@ -160,8 +128,6 @@ botaoConcluir.addEventListener("click", function () {
   let posicoesIncorretas = [];
 
   let fourHolesT1 = document.querySelectorAll(".four-holeT1");
-
-  
 
   // Verificar se cada cor no hole corresponde exatamente à posição esperada
   for (let i = 0; i < coresEscolhidas.length; i++) {
@@ -189,11 +155,27 @@ botaoConcluir.addEventListener("click", function () {
     }
   }
 
+  // Retorno do resultado para o console.
   if (acertosExatos === 4) {
     console.log("Parabéns, você acertou a sequência exata!");
   } else {
     console.log(`${acertosExatos} cor(es) na posição correta (Índices: ${posicoesCorretas.join(", ")}), ${acertosCorPosicaoDiferente} cor(es) na posição diferente (Índices: ${posicoesIncorretas.join(", ")}).`);
   }
+
+  // Pega o H2 do HTML e retorna o resultado para o usuário
+  let resultado = document.getElementById("resultadoJogada");
+
+  if (acertosExatos > 0 && acertosCorPosicaoDiferente === 0) {
+    resultado.textContent = `Você acertou ${acertosExatos} cor(es) na posição correta.`
+  } else if (acertosExatos === 0 && acertosCorPosicaoDiferente > 0) {
+    resultado.textContent = `Você acertou ${acertosCorPosicaoDiferente} cor(es) na posição diferente.`
+  } else if (acertosExatos > 0 && acertosCorPosicaoDiferente > 0) {
+    resultado.textContent = `Você acertou ${acertosExatos} cor(es) na posição correta e ${acertosCorPosicaoDiferente} cor(es) na posição diferente.`
+  } else if (acertosExatos === 0 && acertosCorPosicaoDiferente === 0) {
+    resultado.textContent = `Você não acertou nenhuma cor.`
+  } else if (acertosExatos === 4) {
+    resultado.textContent = `Parabéns! Você acertou a sequência exata!`
+  };
 });
 
 
