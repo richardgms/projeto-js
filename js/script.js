@@ -116,8 +116,24 @@ const todosPreenchidos = estadoHoles.every(estado => estado === true);
 botaoConcluir.style.display = todosPreenchidos ? "block" : "none";
 }
 
+// Contador de jogadas restantes.
+let jogadasRestantes = 10
+let h2JogadasRestantes = document.getElementById("jogadasRestantes");
+
 botaoConcluir.addEventListener("click", function () {
   console.log("Cores escolhidas:", coresEscolhidas);
+
+  // Diminui o contador de jogadas.
+  --jogadasRestantes;
+  h2JogadasRestantes.textContent = jogadasRestantes;
+
+  if (jogadasRestantes <= 0) {
+    h2JogadasRestantes.textContent = "Suas jogadas acabaram. Você perdeu.";
+    botaoConcluir.style.display = "none";
+    
+    let botaoTentarNovamente = document.getElementById("tentarNovamente");
+    botaoTentarNovamente.style.display = "block";
+  }
 
   // Converte holesT1 para um array para usar o método map
   let coresHoles = Array.from(holesT1).map(hole => window.getComputedStyle(hole).backgroundColor);

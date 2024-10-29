@@ -251,7 +251,7 @@ h1 {
   background-color: rgb(201, 141, 30);
 }
 
-#botaoConcluir {
+button {
   display: none;
   position: absolute;
   bottom: 5%;
@@ -269,7 +269,7 @@ h1 {
   filter: drop-shadow(1px 1px 3px rgb(0, 0, 0));
 }
 
-#botaoConcluir:hover {
+button:hover {
   cursor: pointer;
   background-color: #000000;
   color: #f1f1f1;
