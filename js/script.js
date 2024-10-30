@@ -5,14 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const regrasButton = document.querySelector(".regras");
   const voltarButton = document.querySelector("#voltar");
 
-  
-
-  // Configuração do áudio e controles
   bgMusic.volume = 0.3;
   bgMusic.play().then(() => {
     controlIcon.src = "/images/pause.svg";
   }).catch(() => {
-    // Caso o navegador bloqueie a reprodução automática, inicia ao clicar
     document.body.addEventListener("click", function tryPlayMusic() {
       bgMusic.play().then(() => {
         controlIcon.src = "/images/pause.svg";
@@ -21,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { once: true });
   });
 
-  // Função de alternância entre play/pause para a música de fundo
   function togglePlay() {
     if (bgMusic.paused) {
       bgMusic.play();
@@ -32,30 +27,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Controla a música quando o ícone é clicado
   controlIcon.addEventListener("click", togglePlay);
-
-  // Sons para os botões "Jogar", "Regras", "Voltar" e "Play/Pause".
 
   const clickSound = new Audio("../tracks/click.mp3");
   clickSound.load();
   clickSound.volume = 0.5;
 
   controlIcon && controlIcon.addEventListener("click", () => {
-      clickSound.pause();
-      clickSound.currentTime = 0;
-      clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
-    });
+    clickSound.pause();
+    clickSound.currentTime = 0;
+    clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
+  });
 
   voltarButton && voltarButton.addEventListener("click", (event) => {
     event.preventDefault();
-      setTimeout(() => {
-        window.location.href = "../index.html";
-      }, 300);
-      clickSound.pause();
-      clickSound.currentTime = 0;
-      clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
-    });
+    setTimeout(() => {
+      window.location.href = "../index.html";
+    }, 300);
+    clickSound.pause();
+    clickSound.currentTime = 0;
+    clickSound.play().catch(error => console.log("Erro ao reproduzir som:", error));
+  });
 
   jogarButton && jogarButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -78,13 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
 // Configuração inicial das variáveis de cor e tentativas
 let collors = document.querySelectorAll(".color"); 
 let collorsArray = ["red", "yellow", "orange", "blue", "pink", "purple", "green"]; 
 
-// Valores RGB associados a cada cor
 let collorsArrayRandom = {
   "red": "rgb(255, 0, 0)",
   "yellow": "rgb(255, 255, 0)",
@@ -95,98 +84,94 @@ let collorsArrayRandom = {
   "green": "rgb(0, 128, 0)"
 };
 
-let corSelecionada = ""; // Cor escolhida pelo jogador
-let tentativaAtual = 1; // Inicia com a primeira tentativa
+let corSelecionada = ""; 
+let tentativaAtual = 1;
 let botaoConcluir = document.getElementById("botaoConcluir");
 let jogadasRestantes = 10;
 let h2JogadasRestantes = document.getElementById("jogadasRestantes");
 
-// Função para embaralhar as cores e escolher 4 aleatórias
 function randomColor(array, numeroDeCores) {
   return array.sort(() => Math.random() - 0.5).slice(0, numeroDeCores);
 }
 
-// Seleciona quatro cores aleatórias como alvo para o jogador
 const coresEscolhidas = randomColor(Object.keys(collorsArrayRandom), 4);
 console.log("Cores escolhidas:", coresEscolhidas);
 
-// Configuração de evento para cada botão de cor; define a cor selecionada
 collors.forEach((element, index) => {
   element.addEventListener("click", function () {
     corSelecionada = collorsArray[index];
   });
 });
-      
-// Inicializa a primeira tentativa ao carregar
+
 habilitarPreenchimentoHoles();
 
-// Função para obter os `holes` da tentativa atual
 function getCurrentHoles() {
   return document.querySelectorAll(`.holeT${tentativaAtual}`);
 }
 
-// Função para verificar se todos os buracos (`holes`) da tentativa atual estão preenchidos
 function verificarEstadoHoles(holes) {
   const todosPreenchidos = Array.from(holes).every(hole => hole.classList.contains("preenchido"));
-  console.log("Todos os holes preenchidos:", todosPreenchidos);
-  botaoConcluir.style.display = todosPreenchidos ? "block" : "none"; // Mostra o botão "Concluir" se todos estiverem preenchidos
+  botaoConcluir.style.display = todosPreenchidos ? "block" : "none";
 }
 
-// Habilita o preenchimento dos `holes` da tentativa atual e desativa os anteriores
 function habilitarPreenchimentoHoles() {
   if (tentativaAtual > 1) {
     const previousHoles = document.querySelectorAll(`.holeT${tentativaAtual - 1}`);
     previousHoles.forEach(hole => {
       hole.style.cursor = "default";
-      hole.removeEventListener("click", preencherCor); // Remove o evento de clique nos `holes` anteriores
+      hole.removeEventListener("click", preencherCor);
     });
   }
 
   const currentHoles = getCurrentHoles();
   currentHoles.forEach(hole => {
     hole.style.cursor = "pointer";
-    hole.addEventListener("click", preencherCor); // Adiciona o evento de clique para preencher os `holes`
+    hole.addEventListener("click", preencherCor);
   });
 }
 
-// Função que preenche o `hole` clicado com a cor selecionada e verifica o estado
 function preencherCor(event) {
   const hole = event.target;
   if (corSelecionada) {
     hole.style.backgroundColor = collorsArrayRandom[corSelecionada];
-    hole.classList.add("preenchido"); // Marca o `hole` como preenchido
-    corSelecionada = ""; // Limpa a seleção de cor para a próxima escolha
-    verificarEstadoHoles(getCurrentHoles()); // Verifica se todos os `holes` estão preenchidos
+    hole.classList.add("preenchido");
+    corSelecionada = "";
+    verificarEstadoHoles(getCurrentHoles());
   }
 }
 
-// Função que valida a tentativa do jogador e compara com as cores-alvo
 function validarTentativa() {
   const currentHoles = Array.from(getCurrentHoles()).map(hole => window.getComputedStyle(hole).backgroundColor);
   let acertosExatos = 0;
   let acertosCorPosicaoDiferente = 0;
-
   const fourHoles = document.querySelectorAll(`.four-holeT${tentativaAtual}`);
 
-  for (let i = 0; i < coresEscolhidas.length; i++) {
-    const corEscolhida = coresEscolhidas[i];
-    const valorRGBEsperado = collorsArrayRandom[corEscolhida];
-    const valorRGBHole = currentHoles[i];
+  const coresEscolhidasChecadas = Array(coresEscolhidas.length).fill(false);
+  const currentHolesChecados = Array(currentHoles.length).fill(false);
 
-    // Verifica se a cor e posição estão corretas
-    if (valorRGBEsperado === valorRGBHole) {
+  for (let i = 0; i < coresEscolhidas.length; i++) {
+    const valorRGBEsperado = collorsArrayRandom[coresEscolhidas[i]];
+    if (currentHoles[i] === valorRGBEsperado) {
       acertosExatos++;
+      coresEscolhidasChecadas[i] = true;
+      currentHolesChecados[i] = true;
       fourHoles[i].style.backgroundColor = "black";
       fourHoles[i].style.outline = "2px solid white";
-    } else if (currentHoles.includes(valorRGBEsperado)) {
-      // Verifica se a cor está correta mas na posição errada
-      acertosCorPosicaoDiferente++;
-      fourHoles[i].style.backgroundColor = "white";
-      fourHoles[i].style.outline = "2px solid #999999";
-    } else {
-      // Não encontrou a cor, mantém o estilo padrão
-      fourHoles[i].style.backgroundColor = "#2e2e2e";
-      fourHoles[i].style.outline = "none";
+    }
+  }
+
+  for (let i = 0; i < coresEscolhidas.length; i++) {
+    const valorRGBEsperado = collorsArrayRandom[coresEscolhidas[i]];
+    if (!coresEscolhidasChecadas[i]) {
+      for (let j = 0; j < currentHoles.length; j++) {
+        if (!currentHolesChecados[j] && currentHoles[j] === valorRGBEsperado) {
+          acertosCorPosicaoDiferente++;
+          currentHolesChecados[j] = true;
+          fourHoles[j].style.backgroundColor = "white";
+          fourHoles[j].style.outline = "2px solid #999999";
+          break;
+        }
+      }
     }
   }
 
@@ -194,7 +179,6 @@ function validarTentativa() {
   jogadasRestantes--;
   h2JogadasRestantes.textContent = jogadasRestantes;
 
-  // Verifica as condições de vitória, derrota ou próxima tentativa
   if (acertosExatos === 4) {
     resultado.textContent = "Parabéns! Você acertou a sequência exata!";
     botaoConcluir.style.display = "none";
@@ -206,13 +190,10 @@ function validarTentativa() {
   } else {
     resultado.textContent = `${acertosExatos} cor(es) na posição correta e ${acertosCorPosicaoDiferente} cor(es) na posição diferente.`;
     tentativaAtual++;
-    botaoConcluir.style.display = "none"; // Oculta o botão até preencher os `holes` da próxima tentativa
+    botaoConcluir.style.display = "none";
     habilitarPreenchimentoHoles();
   }
 }
 
-// Evento de clique no botão "Concluir" que valida a tentativa
 botaoConcluir.addEventListener("click", validarTentativa);
-
-// Inicializa o jogo, habilitando a primeira tentativa
 habilitarPreenchimentoHoles();
