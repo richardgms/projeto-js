@@ -219,8 +219,8 @@ h1 {
 
 .color:hover{
   transition: 0.3s;
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
 }
 
 #amarelo{
@@ -253,6 +253,8 @@ h1 {
 
 button {
   display: none;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 5%;
   left: 50%;
@@ -267,6 +269,7 @@ button {
   transition: 0.25s;
   border: 3px solid #0d0d0d;
   filter: drop-shadow(1px 1px 3px rgb(0, 0, 0));
+  text-align: center;
 }
 
 button:hover {
@@ -285,11 +288,153 @@ button:hover {
   border: 3px solid white;
   padding: 20px 10px;
   position: fixed;
-  top: 30px;
-  left: 30px;
+  bottom: 30px; /* Define a distância do canto inferior */
+  right: 30px; /* Define a distância do canto direito */
+  top: auto; /* Remove a posição do topo */
+  left: auto; /* Remove a posição da esquerda */
 }
 
 #resultadoJogada{
   font-family: "Silkscreen", sans-serif;
   margin-top: 16px;
 }
+
+@media (max-width: 768px) {
+/* Mudança na página de regras */
+
+  .main-regras{
+    margin: 0;
+    padding: 7px 40px;
+  }
+
+  .main-regras h2{
+    margin-bottom: 40px;
+    font-size: 40px;
+
+  }
+
+  #control-icon {
+    top: 20px;
+    right: 20px;
+    width: 25px;
+  }
+
+  img#voltar {
+    top: 20px;
+    left: 20px;
+    width: 25px;
+  }
+
+/* Mudança na página do game */
+
+  #body-regras{
+    overflow: auto;
+  }
+
+  html, body{
+    overflow: hidden;
+  }
+
+  h1{
+    font-size: 40px;
+    margin-top: 5px;
+  }
+
+  #jogadasRestantes {
+    font-size: 15px;
+    padding: 15px 0px;
+    bottom: 20px; /* Define a distância do canto inferior */
+    right: 20px; /* Define a distância do canto direito */
+    top: auto; /* Remove a posição do topo */
+    left: auto; /* Remove a posição da esquerda */
+  }
+
+  #cores {
+    display: grid;
+    grid-template-columns: repeat(4, auto); /* Primeira linha com 3 cores */
+    grid-template-rows: auto auto; /* Duas linhas */
+    gap: 10px; /* Espaço entre as cores */
+    justify-content: center;
+    margin: 20px auto; /* Centraliza o grid e adiciona espaço em cima */
+    max-width: 150px; /* Limita a largura para centralização */
+  }
+  
+  .color {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 10px;
+  }
+
+  #board {
+    display: grid;
+    grid-template-columns: repeat(5, auto); /* 4 espaços para 'hole' e 1 para 'four-hole' */
+    grid-template-rows: repeat(10, auto); /* 10 linhas no total */
+    gap: 10px; /* Espaçamento entre os elementos */
+    justify-content: center;
+    padding: 20px 60px;
+    margin: 120px auto;
+  }
+
+  .tentativa {
+    display: contents; /* Permite que cada linha funcione como uma unidade no grid */
+  }
+
+  .hole {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    background-color: #2e2e2e;
+    border-radius: 50%;
+    transition: 0.2s;
+    margin-right: 15px;
+  }
+
+  .four-hole {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dividido em 2 colunas */
+    grid-template-rows: repeat(2, 1fr); /* Dividido em 2 linhas */
+    gap: 2px; /* Pequeno espaço entre os elementos */
+    margin-right: 15px;
+  }
+
+  .four-hole-left, .four-hole-right {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    background-color: #2e2e2e;
+    border-radius: 50%;
+  }
+
+  button{
+    display: none;
+    font-size: 20px;
+    padding: 0px 20px;
+    position: fixed;
+    bottom: 16px;
+  }
+
+  #resultadoJogada {
+    font-family: "Silkscreen", sans-serif;
+    font-size: 16px;
+    color: #f1f1f1;
+    margin: 10px auto;
+    padding: 0 20px;
+    text-align: center;
+    width: calc(100% - 40px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Centraliza o #cores entre o h1 e o #board quando #resultadoJogada está vazio */
+  #resultadoJogada:empty + #cores {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+
+

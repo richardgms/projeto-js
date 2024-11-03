@@ -131,3 +131,44 @@ footer {
   text-transform: uppercase;
   color: #f1f1f1;
 }
+
+@media (max-width: 768px) {
+
+  
+
+  /* Reduz o tamanho do título */
+  h1 {
+    font-size: 60px; /* Tamanho menor para caber na tela do celular */
+  }
+
+  /* Ajusta o tamanho da imagem #brain */
+  #brain {
+    max-width: 250px;
+    min-width: 1200px;
+  }
+
+  /* Reduz o tamanho dos botões */
+  button {
+    font-size: 20px; /* Tamanho da fonte menor */
+    padding: 10px 40px;
+  }
+
+  /* Ajusta o ícone de controle */
+  #control-icon {
+    top: 20px;
+    right: 20px;
+    width: 25px; /* Ícone menor para telas pequenas */
+  }
+
+  /* Ajuste dos elementos no container #botoes */
+  #botoes {
+    gap: 8px; /* Reduz o espaço entre os botões */
+    margin-top: 15px;
+  }
+
+  /* Ajusta o tamanho da fonte do rodapé */
+  footer {
+    font-size: 8px;
+    padding: 15px;
+  }
+}
