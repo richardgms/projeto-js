@@ -1,6 +1,6 @@
 # 🧠 Projeto de Jogo da Memória - JavaScript
 
-Este é um jogo de memória simples feito com HTML, CSS e JavaScript puro. O projeto tem como objetivo testar a memória do jogador através da combinação de pares de cartas com elementos visuais e sons.
+Este é um jogo de memória simples feito com HTML, CSS e JavaScript puro. O projeto tem como objetivo testar a sorte e a lógica do jogador através da combinação das bolinhas coloridas para tentar adivinhar a "senha".
 
 ## 🔗 Acesso rápido
 
